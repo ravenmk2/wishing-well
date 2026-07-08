@@ -1,11 +1,13 @@
 # Project documentation model
 
-The project MUST maintain this `docs/` tree:
+## Structure
+
+The project SHOULD maintain this `docs/` tree:
 
 ```txt
 docs/
 ├── README.md              # one-line project description + doc index
-├── constitution.md        # project charter
+├── constitution.md        # project charter (goals, principles, invariants)
 ├── glossary.md            # global glossary
 ├── architecture.md        # global architecture + tech stack (split into architecture/ when large)
 ├── conventions.md         # conventions (split into conventions/ when large)
@@ -27,14 +29,19 @@ docs/
 ├── plans/
 │   ├── active/
 │   │   └── YYYY-MM-DD-<slug>/
-│   │       ├── plan.md    # mandatory: Why + What + doc changes + deviations
+│   │       ├── plan.md    # mandatory: WHY + WHAT + doc changes + deviations
 │   │       ├── spec.md    # incremental requirements spec (merged into docs/specs/ when complete)
-│   │       ├── design.md  # technical design, How (optional; required for greenfield; merged into docs/design/ when complete)
+│   │       ├── design.md  # technical design, How (merged into docs/design/ when complete)
 │   │       └── tasks.md   # decomposed dev tasks
 │   └── completed/         # archived plans
-└── references/            # external knowledge — user-maintained only
+└── references/            # external knowledge (human maintained only)
     ├── <slug>.md
     └── <domain>/<slug>.md
 ```
 
-`AGENTS.md` at the repo root emphasizes `docs/constitution.md` — the project charter (purpose, principles, invariants) that governs all work — and points to `docs/README.md` for the documentation index.
+## AGENTS.md
+
+`AGENTS.md` at the repo root SHOULD:
+
+- emphasizes `docs/constitution.md`, the project charter that governs all work.
+- points to `docs/README.md` for the documentation index.
