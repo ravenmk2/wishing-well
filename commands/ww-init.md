@@ -1,5 +1,5 @@
 ---
-description: Explore the codebase and bootstrap the docs/ foundation — AGENTS.md, docs/README.md (index), and the full doc structure; greenfield gets empty stubs, brownfield generates content per-doc interactively.
+description: Bootstrap the docs/ foundation — AGENTS.md, docs/README.md index, and the full doc structure; greenfield gets empty stubs, brownfield generates content per-doc interactively.
 ---
 
 You are initializing this project's documentation foundation. `AGENTS.md` foregrounds `docs/constitution.md` and points to `docs/README.md` — no workflow instructions, no skill or command names. The workflow is driven by installed skills, not by `AGENTS.md`.
@@ -30,7 +30,7 @@ No workflow instructions, no skill/command names.
 
 **`docs/README.md`** — a one-sentence project description + a documentation index (a nested list mirroring the `docs/` tree, each entry with a one-line description) + a build/test/lint commands block. For greenfield, the commands block is a placeholder: `> TODO: document build/test/lint commands.`
 
-**Greenfield** — create the full structure with empty (heading-only) stubs and empty directories. The structure must be preserved even where content is absent:
+**Greenfield** — create the full structure with empty (heading-only) stubs and empty directories. The structure MUST be preserved even where content is absent:
 
 - `docs/constitution.md`, `docs/glossary.md`, `docs/architecture.md`, `docs/conventions.md` — heading-only stubs (e.g. `# Constitution\n`).
 - `docs/experience/pitfalls.md` — heading-only stub.
@@ -54,6 +54,6 @@ Once approved, write all the files and create the directories.
 
 ### 6. Git commit — default commit, skippable
 
-Ask via `question` whether to skip the commit (`yes` / `no`). If `no`, stage only the created/modified files, propose a message, confirm files + message with the user, then commit. Never commit without explicit approval.
+Ask via `question` whether to skip the commit (`yes` / `no`). If `no`, stage only the created/modified files, propose a message, confirm files + message with the user, then commit. MUST NOT commit without explicit approval.
 
 $ARGUMENTS

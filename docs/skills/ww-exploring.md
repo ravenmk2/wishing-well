@@ -1,7 +1,7 @@
 # Skill: ww-exploring
 
 - **Skill**: `ww-exploring` (command `/ww-explore`)
-- **Role**: Research front — convergent.
+- **Role**: Research phase — convergent.
 
 ## Purpose
 
@@ -32,7 +32,7 @@ Refine a roughly-formed idea into a scoped conclusion. Use when the direction is
 - **One question at a time** via `question`. Resolve ambiguity incrementally.
 - **Doc changes stay at requirements level** (specs) for documentation routing; technical detail belongs in design (downstream).
 - **Distinct from brainstorming.** Exploring assumes the direction is clear enough to converge, not to diverge across alternatives.
-- **Gate cadence.** Self-review default-on, skippable; user review is a HARD-GATE.
+- **Gating.** Self-review default-on, skippable; user review is a HARD-GATE.
 
 ## Boundaries
 

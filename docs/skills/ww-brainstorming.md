@@ -1,7 +1,7 @@
 # Skill: ww-brainstorming
 
 - **Skill**: `ww-brainstorming` (command `/ww-brainstorm`)
-- **Role**: Research front — divergent.
+- **Role**: Research phase — divergent.
 
 ## Purpose
 
@@ -31,9 +31,9 @@ Surface genuinely distinct alternatives for an undecided direction, then converg
 
 - **No file artifact.** Brainstorming is exploration, not truth-writing; persistence is deferred to the routed skill.
 - **One question at a time** via `question`. Let each answer shape the next; avoids over-constraining the user.
-- **Work-type is open; research mode is fixed.** Only the work-type (documentation / development) is determined during the skill; the research mode (brainstorming) is given.
+- **Work-kind is open; research kind is fixed.** Only the work-kind (documentation / development) is determined during the skill; the research kind (brainstorming) is given.
 - **Planning routing is gated on convergence.** A still-divergent conclusion MUST NOT route to `ww-planning`.
-- **Gate cadence.** Self-review default-on, skippable; user review is a HARD-GATE.
+- **Gating.** Self-review default-on, skippable; user review is a HARD-GATE.
 
 ## Boundaries
 

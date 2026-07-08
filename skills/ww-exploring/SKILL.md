@@ -9,13 +9,15 @@ Refine a roughly-formed idea into a scoped conclusion — align on requirements 
 
 ## When to use me
 
-Use when the user already has a rough idea but it needs convergence: align scope, resolve ambiguity, decide what's in and out. Invoke when the direction is clear enough to converge but the boundaries aren't. Do NOT use to brainstorm divergent alternatives (use `ww-brainstorming`), diagnose a bug/perf issue (use `ww-analyzing`), write a Plan (use `ww-planning`), or write docs directly (use `ww-writing-doc`). Skip when the goal/scope is already clear.
+- **Use when** the user has a rough idea that needs convergence — align scope, resolve ambiguity, decide in/out; the direction is clear enough to converge but the boundaries aren't.
+- **MUST NOT use** to: brainstorm divergent alternatives → `ww-brainstorming`; diagnose a bug/perf issue → `ww-analyzing`; write a Plan → `ww-planning`; write docs directly → `ww-writing-doc`.
+- **Skip when** the goal/scope is already clear.
 
 ## Workflow
 
 ```mermaid
 flowchart TD
-    A[1. Explore project] --> B[2. Restate + determine work-type]
+    A[1. Explore project] --> B[2. Restate + determine work-kind]
     B --> C{Aligned?}
     C -- No --> D[3. Clarify one question at a time]
     D --> B
@@ -38,11 +40,18 @@ Follow these steps in order.
 
 ### 1. Explore the project
 
-Read `AGENTS.md` (foregrounds `docs/constitution.md` and points to `docs/README.md`) → `docs/README.md`, then the relevant docs (`constitution.md`, `architecture.md`, `conventions.md`, `glossary.md`, `specs/`, `design/`, `contracts/`, `adr/`, and `references/` as context) and code. Build a picture of what the project is and how the user's intent fits.
+Read in order, then build a picture of how the user's intent fits:
 
-### 2. Restate and determine work-type
+1. `AGENTS.md` — foregrounds `docs/constitution.md`, points to `docs/README.md`.
+2. `docs/README.md` — the doc index.
+3. Relevant docs and code — `constitution.md`, `architecture.md`, `conventions.md`, `glossary.md`, `specs/`, `design/`, `contracts/`, `adr/`; `references/` as context.
 
-Restate the situation to the user and determine the work type for routing: **documentation** (refinement lands as spec / domain design) or **development** (the idea will be implemented). The research mode is exploring (convergent); only the work-type is open.
+### 2. Restate and determine work-kind
+
+Restate the situation to the user. Determine the work kind for routing (research kind is fixed — exploring, convergent; only the work-kind is open):
+
+- **documentation** — refinement lands as spec / domain design.
+- **development** — the idea will be implemented.
 
 ### 3. Clarify one question at a time
 
@@ -69,20 +78,24 @@ On approval, hand off to the routed skill (`ww-writing-doc` or `ww-planning`) vi
 
 ## Conclusion
 
-The conclusion is the deliverable of exploring — it carries the aligned scope into the next skill. It lives in the conversation (no file); the next skill consumes it and persists what it needs.
+The conclusion carries the aligned scope into the next skill. It lives in the conversation (no file); the next skill consumes it and persists what it needs.
 
 ### No source of truth here
 
-Exploring produces no artifact and touches no truth. The spec/design remain the source of truth; the Plan (once written) becomes the operative truth during development execution; docs remain truth for documentation.
+Exploring produces no artifact and touches no truth:
+
+- Spec/design remain the source of truth.
+- Plan (once written) becomes the source of truth during development execution.
+- Docs remain truth for documentation.
 
 ## Self-review checklist
 
-- [ ] Work type (documentation / development) correctly identified.
+- [ ] Work kind (documentation / development) correctly identified.
 - [ ] Scope clear; in/out boundaries stated.
 - [ ] Doc changes (if any) stay at requirements level for specs; tech detail in design.
 - [ ] Open questions resolved or explicitly flagged.
 
 ## Hard constraints
 
-- Touch no file. Exploring produces no artifact; the conclusion lives in the conversation.
-- Never skip the HARD-GATE. User review of the conclusion and routing is mandatory.
+- MUST touch no file. Exploring produces no artifact; the conclusion lives in the conversation.
+- MUST NOT skip the HARD-GATE. User review of the conclusion and routing is mandatory.

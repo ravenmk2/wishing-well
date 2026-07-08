@@ -9,13 +9,13 @@ Turn a research conclusion (or a clear user goal) into an executable Plan of fin
 
 ## Core principle
 
-- **Plan = execution path.** During execution the Plan is the operative truth; docs lag and are merged at archive.
+- **Plan = execution path.** During execution the Plan is the source of truth; docs lag and are merged at archive.
 - **No contradiction.** A Plan MUST NOT contradict spec or design; gaps are noted as revision suggestions, not silently worked around.
 
 ## Source-of-truth stance
 
 - Spec governs **requirements**; design governs **shape**; Plan governs **execution**.
-- During the Plan lifecycle, the Plan is the operative truth (docs lag). If spec/design is wrong, the Plan carries the correction as `spec.md` / `design.md` (applied at archive); if the gap is fundamental, return to a research skill.
+- During the Plan lifecycle, the Plan is the source of truth (docs lag). If spec/design is wrong, the Plan carries the correction as `spec.md` / `design.md` (applied at archive); if the gap is fundamental, return to a research skill.
 
 ## Artifact
 
@@ -35,7 +35,7 @@ Turn a research conclusion (or a clear user goal) into an executable Plan of fin
 - **Greenfield invariant.** A Plan covering an area with no existing spec/design MUST carry both `spec.md` and `design.md`; code MUST NOT land for an undocumented area.
 - **Spec vs design vs contracts.** Spec = what (requirements); design = how (internal shape, incl. `db-schema`); contracts = outward-facing agreements (maintained by `ww-writing-doc`, not carried by a Plan). Implementation detail belongs in `tasks.md`.
 - **Task granularity.** Fine-grained, atomic; each task carries a verification method; prefer test-first for behavior-bearing tasks; prefer automated checks over manual inspection.
-- **Gate cadence.** Self-review default-on, skippable; user review is a HARD-GATE; commit default-on, skippable; handoff via `question`.
+- **Gating.** Self-review default-on, skippable; user review is a HARD-GATE; commit default-on, skippable; handoff via `question`.
 
 ## Boundaries
 

@@ -1,7 +1,7 @@
 # Skill: ww-writing-doc
 
 - **Skill**: `ww-writing-doc` (command `/ww-write-doc`)
-- **Role**: Documentation path — terminal.
+- **Role**: Documentation path — completion.
 
 ## Purpose
 
@@ -34,9 +34,9 @@ Write or update final-state docs directly from a research conclusion — for sub
 - **Project purity.** Docs MUST NOT reference the agent, skills, workflow, Plans, or any process — written as a human project author.
 - **`references/` is user-maintained.** MUST NOT write to it.
 - **Greenfield.** Establishing docs for a new area MUST produce both the spec (requirements) and the design (shape).
-- **Adaptive granularity.** Default: one design doc per topic (`docs/design/<domain>/<slug>.md`). Split a concern out when it is large (>150 lines) and referenced elsewhere, cross-cutting, or has its own change cadence.
+- **Granularity rules.** Default: one design doc per topic (`docs/design/<domain>/<slug>.md`). Split a concern out when it is large (>150 lines) and referenced elsewhere, cross-cutting, or has its own change cadence.
 - **Spec vs design vs contracts.** See `ww-planning`; implementation detail belongs in a Plan's `tasks.md`, not in these docs.
-- **Gate cadence.** Self-review default-on, skippable; user review is a HARD-GATE (sets a new ADR's status to `accepted` on approval); commit default-on, skippable.
+- **Gating.** Self-review default-on, skippable; user review is a HARD-GATE (sets a new ADR's status to `accepted` on approval); commit default-on, skippable.
 
 ## Boundaries
 

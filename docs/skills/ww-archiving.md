@@ -1,7 +1,7 @@
 # Skill: ww-archiving
 
 - **Skill**: `ww-archiving` (command `/ww-archive`)
-- **Role**: Development path — terminal.
+- **Role**: Development path — completion.
 
 ## Purpose
 
@@ -9,7 +9,7 @@ Merge a Plan's `spec.md` / `design.md` into final-state canonical docs (diff-rev
 
 ## Core principle
 
-- **Consolidate truth.** During execution the Plan was the operative truth; archiving merges `spec.md` / `design.md` so the docs become the live truth again, and files the Plan directory as the change-process record.
+- **Consolidate truth.** During execution the Plan was the source of truth; archiving merges `spec.md` / `design.md` so the docs become the live truth again, and files the Plan directory as the change-process record.
 
 ## Source-of-truth stance
 
@@ -37,7 +37,7 @@ Merge a Plan's `spec.md` / `design.md` into final-state canonical docs (diff-rev
 - **Bug-fix Plan with no `spec.md` / `design.md`.** Skip the merge; just archive + commit.
 - **ADR lifecycle is `ww-writing-doc`'s responsibility.** Archiving MUST NOT touch `docs/adr/`.
 - **README index.** Update `docs/README.md` for any newly added doc files.
-- **Gate cadence.** Self-review default-on, skippable (merge-focused; N/A for abandoned); user review is a HARD-GATE (skipped only for abandoned / no-merge); final-commit confirmation is always a gate.
+- **Gating.** Self-review default-on, skippable (merge-focused; N/A for abandoned); user review is a HARD-GATE (skipped only for abandoned / no-merge); final-commit confirmation is always a gate.
 
 ## Boundaries
 

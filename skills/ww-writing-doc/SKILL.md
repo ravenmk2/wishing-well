@@ -9,7 +9,8 @@ Write or update final-state docs directly from a research conclusion — for sub
 
 ## When to use me
 
-Use to write/update docs when the work is documentation and substantive: project charter, glossary, architecture, conventions, contracts, experience notes, spec or design refinements, ADRs — not tied to immediate code. Invoke after a research skill (`ww-brainstorming` / `ww-exploring` / `ww-analyzing`), or directly when the decision is clear. Do NOT use for development work (the doc changes ride as `spec.md` / `design.md` in a Plan, merged by `ww-archiving`), or for trivial edits (typos, formatting — edit directly, no skill).
+- **Use when** writing/updating substantive documentation not tied to immediate code — project charter, glossary, architecture, conventions, contracts, experience notes, spec/design refinements, ADRs. Invoke after a research skill (`ww-brainstorming` / `ww-exploring` / `ww-analyzing`), or directly when the decision is clear.
+- **MUST NOT use** for: development work (doc changes ride as `spec.md` / `design.md` in a Plan, merged by `ww-archiving`); trivial edits (typos, formatting — edit directly, no skill).
 
 ## Workflow
 
@@ -36,11 +37,18 @@ Follow these steps in order.
 
 ### 1. Read conclusion and target docs
 
-Read the research conclusion (decision/content) and the existing target docs under `docs/` (`constitution.md`, `glossary.md`, `architecture.md`, `conventions.md`, `contracts/`, `experience/`, `specs/`, `design/`, `adr/`). If invoked directly (no research skill), take the conclusion from the user input.
+- **Read** the research conclusion (decision/content). If invoked directly (no research skill), take the conclusion from user input.
+- **Read** the existing target docs under `docs/` — `constitution.md`, `glossary.md`, `architecture.md`, `conventions.md`, `contracts/`, `experience/`, `specs/`, `design/`, `adr/`.
 
 ### 2. Draft doc changes
 
-Draft the changes: merge the conclusion into final-state docs (docs read as current state, no change markers). For a new ADR, create `docs/adr/NNN-<slug>.md` (3-digit, zero-padded) with frontmatter (`date`, `status: draft`). For a supersede, set the old ADR's frontmatter to `status: superseded` + `superseded_by`, and the new ADR's to `supersedes`. Update `docs/adr/index.md` to list only effective (non-superseded) ADRs. Add traceability links where relevant. Update `docs/README.md`'s index to mirror any doc files added.
+Draft the changes — merge the conclusion into final-state docs (docs read as current state, no change markers):
+
+- **New ADR** — create `docs/adr/NNN-<slug>.md` (3-digit, zero-padded) with frontmatter (`date`, `status: draft`).
+- **Supersede** — set the old ADR's frontmatter to `status: superseded` + `superseded_by`; the new ADR's to `supersedes`.
+- **`docs/adr/index.md`** — list only effective (non-superseded) ADRs.
+- Add traceability links where relevant.
+- Update `docs/README.md`'s index to mirror any doc files added.
 
 ### 3. Self-review
 
@@ -48,11 +56,15 @@ Ask via `question` whether to skip self-review (`yes` / `no`). If `no`, check ag
 
 ### 4. User review — HARD-GATE
 
-Present the drafted docs for user review. You MUST NOT proceed until the user explicitly approves. On requested changes, update and re-present; if changes are substantive, re-run the self-review first. Loop until approval. On approval, set any new ADR's `status` to `accepted`.
+Present the drafted docs for user review:
+
+- MUST NOT proceed until the user explicitly approves.
+- On requested changes: update and re-present; if changes are substantive, re-run the self-review first. Loop until approval.
+- On approval: set any new ADR's `status` to `accepted`.
 
 ### 5. Git commit
 
-Ask via `question` whether to skip the commit (`yes` / `no`). If `no`, stage only the doc files (including `docs/adr/index.md` and `docs/README.md`), propose a message, confirm files + message with the user, then commit. Never commit without explicit approval.
+Ask via `question` whether to skip the commit (`yes` / `no`). If `no`, stage only the doc files (including `docs/adr/index.md` and `docs/README.md`), propose a message, confirm files + message with the user, then commit. MUST NOT commit without explicit approval.
 
 ## Writing-doc
 
@@ -60,7 +72,11 @@ Writing-doc lands final-state doc truth for documentation work. The docs are the
 
 ### Source of truth
 
-The spec governs requirements; the design governs internal shape (incl. data structures); contracts govern outward-facing agreements; the charter (`constitution.md`) governs principles. Writing-doc updates them directly — they are immediately the live truth. There is no in-flight split (unlike development, where docs lag during execution). The change process for documentation work is captured in ADRs (for decisions) and the git commit history; the docs themselves are final-state (current state, no change history). No archived Plan is produced.
+Writing-doc updates docs directly — they are immediately the live truth. No in-flight split (unlike development, where docs lag during execution).
+
+- Spec governs requirements; design governs internal shape (incl. data structures); contracts govern outward-facing agreements; charter (`constitution.md`) governs principles.
+- Change process is captured in ADRs (decisions) and git history; the docs themselves are final-state (current state, no change history).
+- No archived Plan is produced.
 
 ### What it contains
 
@@ -73,18 +89,18 @@ The spec governs requirements; the design governs internal shape (incl. data str
 ### Doc types and their rules
 
 - **`constitution.md`** — project charter: purpose, top-level goals, principles, invariants, hard constraints. (Replaces the old foundation-spec role.)
-- **`glossary.md`** — global glossary of terms. **Append-only**: don't delete existing entries; add new terms or revise definitions in place.
+- **`glossary.md`** — global glossary of terms. **Append-only**: MUST NOT delete existing entries; add new terms or revise definitions in place.
 - **`architecture.md`** — global architecture + tech stack (languages, frameworks, libraries, data stores). Module boundaries, component relationships, runtime topology, and technology selection together.
 - **`conventions.md`** — naming, layering, error handling, commit/test conventions observed in the code. Split into `conventions/` when large.
 - **`contracts/`** — outward-facing contracts that external consumers depend on (language/tech-agnostic). `api.md` is the complete API doc; add `<slug>.md` (e.g. `events.md`) as needed.
-- **`experience/`** — lessons learned. `pitfalls.md` for common mistakes; add `<slug>.md` as needed. **Append-only**: don't delete existing entries; add or revise.
-- **`specs/`** — requirements specs (what the system must be). `<slug>.md` global; `<domain>/<slug>.md` per domain.
+- **`experience/`** — lessons learned. `pitfalls.md` for common mistakes; add `<slug>.md` as needed. **Append-only**: MUST NOT delete existing entries; add or revise.
+- **`specs/`** — requirements specs (what the system MUST be). `<slug>.md` global; `<domain>/<slug>.md` per domain.
 - **`design/`** — system design per domain: modules/boundaries/interactions, internal API & data-model shape, database structure design (e.g. `<domain>/db-schema.md`). `<slug>.md` global; `<domain>/<slug>.md` per domain.
 - **`adr/`** — architecture decision records. `NNN-<slug>.md` (3-digit, zero-padded). `index.md` lists only effective (non-superseded) ADRs.
 
 ### Spec vs design vs contracts
 
-A spec states *what the system must be* — the requirements level. Design states *how it's shaped* (internal). Contracts state the *outward-facing agreements*. Keep them separate:
+A spec states *what the system MUST be* — the requirements level. Design states *how it's shaped* (internal). Contracts state the *outward-facing agreements*. Keep them separate:
 
 - **Spec** — goals & scope, non-goals, success criteria, requirements, constraints (security / privacy / reliability / compatibility), scenarios / acceptance checks.
 - **Design (not spec)** — architecture & module boundaries, technology selection with rationale, internal API & data-model shape, database structure design (e.g. `db-schema`), configuration.
@@ -92,9 +108,11 @@ A spec states *what the system must be* — the requirements level. Design state
 
 Implementation detail (specific classes/functions, file layout, step-by-step) belongs in a Plan's `tasks.md`, not in any of these.
 
-### Adaptive granularity
+### Granularity rules
 
-Default to ONE design doc per topic: `docs/design/<domain>/<slug>.md` (or `docs/design/<slug>.md` ungrouped). Split a concern out when it is large (>150 lines) and referenced elsewhere, cross-cutting, or has its own change cadence. Global docs (`architecture.md`, `conventions.md`) hold cross-cutting concerns.
+- Default: ONE design doc per topic — `docs/design/<domain>/<slug>.md` (or `docs/design/<slug>.md` ungrouped).
+- Split a concern out when it is large (>150 lines) and referenced elsewhere, cross-cutting, or has its own change cadence.
+- Global docs (`architecture.md`, `conventions.md`) hold cross-cutting concerns.
 
 ## Storage path
 
@@ -122,10 +140,10 @@ Mirror existing layout if present.
 
 ## Hard constraints
 
-- In this flow, create or modify ONLY files under `docs/` (`constitution.md`, `glossary.md`, `architecture.md`, `conventions.md`, `contracts/`, `experience/`, `specs/`, `design/`, `adr/` incl. `index.md`) and `docs/README.md` (index). Touch no code, no Plan, no `references/` (user-maintained only).
-- Docs are project artifacts, not agent artifacts. They must not reference the coding agent, skill names, the workflow, Plans, or any process — write them as a human project author would, focused on the project alone.
-- `glossary.md` and `experience/` are append-only.
-- `references/` is user-maintained — never write to it.
-- Greenfield: when establishing docs for a new area (no existing spec/design), produce both the spec (requirements) and the design (shape) — don't leave one absent for a new area.
-- Never skip a gated step. User review is a HARD-GATE; the self-review and commit skips each require an explicit user answer.
-- Never commit without explicit approval.
+- In this flow, MUST create or modify ONLY files under `docs/` (`constitution.md`, `glossary.md`, `architecture.md`, `conventions.md`, `contracts/`, `experience/`, `specs/`, `design/`, `adr/` incl. `index.md`) and `docs/README.md` (index). MUST NOT touch code, Plans, or `references/` (user-maintained only).
+- Docs are project artifacts, not agent artifacts. They MUST NOT reference the coding agent, skill names, the workflow, Plans, or any process — write them as a human project author would, focused on the project alone.
+- `glossary.md` and `experience/` MUST be append-only.
+- `references/` is user-maintained — MUST NOT write to it.
+- Greenfield: when establishing docs for a new area (no existing spec/design), MUST produce both the spec (requirements) and the design (shape) — MUST NOT leave one absent for a new area.
+- MUST NOT skip a gated step. User review is a HARD-GATE; the self-review and commit skips each require an explicit user answer.
+- MUST NOT commit without explicit approval.

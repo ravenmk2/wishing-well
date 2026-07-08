@@ -9,7 +9,8 @@ Turn a research conclusion (or a clear user goal) into an executable Plan of fin
 
 ## When to use me
 
-Use to write a Plan for development work (feature or bug fix): task decomposition, ordering, verification, and doc-change targets. Invoke directly when the goal is clear, or after a research skill (`ww-brainstorming` / `ww-exploring` / `ww-analyzing`). Do NOT use for documentation work (use `ww-writing-doc`), research (use a research skill), or coding (use `ww-executing`).
+- **Use when** writing a Plan for development work (feature or bug fix) — task decomposition, ordering, verification, and doc-change targets. Invoke directly when the goal is clear, or after a research skill (`ww-brainstorming` / `ww-exploring` / `ww-analyzing`).
+- **MUST NOT use** for: documentation work → `ww-writing-doc`; research → a research skill; coding → `ww-executing`.
 
 ## Workflow
 
@@ -42,11 +43,14 @@ Follow these steps in order.
 
 ### 1. Design the plan
 
-Read the research conclusion (if any), the target spec(s) under `docs/specs/`, design docs under `docs/design/`, `architecture.md`, `conventions.md`, `glossary.md`, ADRs under `docs/adr/`, and relevant code/build tooling. Design the approach: which slice this Plan covers, what changes, which areas, the strategy, and what doc changes (`spec.md` / `design.md`) it carries — and which canonical docs they'll merge into at archive. Restate the approach to the user. If the goal is clear (no exploring), take scope from the user input.
+Read the inputs, design the approach, restate it to the user. If the goal is clear (no exploring), take scope from the user input.
+
+- **Read** — research conclusion (if any); target specs under `docs/specs/`; design docs under `docs/design/`; `architecture.md`, `conventions.md`, `glossary.md`; ADRs under `docs/adr/`; relevant code/build tooling.
+- **Design** — which slice this Plan covers; what changes; which areas; the strategy; what doc changes (`spec.md` / `design.md`) it carries; which canonical docs they merge into at archive.
 
 ### 2. Clarify with the user
 
-Use the `question` tool to resolve ambiguity, ONE question at a time. If a spec/design gap or contradiction surfaces, note it as a revision suggestion in the Plan — do not edit the docs here.
+Use the `question` tool to resolve ambiguity, ONE question at a time. If a spec/design gap or contradiction surfaces, note it as a revision suggestion in the Plan — MUST NOT edit the docs here.
 
 ### 3. Write the Plan
 
@@ -73,7 +77,7 @@ Present the Plan for user review. You MUST NOT proceed until the user explicitly
 
 ### 6. Git commit
 
-Ask via `question` whether to skip the commit (`yes` / `no`). If `no`, stage only the Plan directory, propose a message, confirm files + message with the user, then commit. Never commit without explicit approval.
+Ask via `question` whether to skip the commit (`yes` / `no`). If `no`, stage only the Plan directory, propose a message, confirm files + message with the user, then commit. MUST NOT commit without explicit approval.
 
 ### 7. Hand off to implementation
 
@@ -81,11 +85,16 @@ Ask via `question` whether to invoke the `ww-executing` skill next (`yes` / `no`
 
 ## Plan
 
-A Plan is the **execution path** for development work — the how. During execution it is the operative truth; after archiving, truth consolidates into the updated docs (per `ww-archiving`).
+A Plan is the **execution path** for development work — the how. During execution it is the source of truth; after archiving, truth consolidates into the updated docs (per `ww-archiving`).
 
 ### Source of truth
 
-The spec governs requirements; the design governs shape; the Plan governs execution. During a Plan's lifecycle, the Plan is the operative truth — docs lag and are merged at archive. Plans must not contradict the spec or design; if they would, note a revision suggestion and include the correction as `spec.md` / `design.md` in the Plan (applied at archive); if the gap is fundamental, return to `ww-exploring` (general catch-all) or a more specific research skill (`ww-brainstorming` / `ww-analyzing`). Never leave docs stale after archive.
+During a Plan's lifecycle, the Plan is the source of truth — docs lag and are merged at archive.
+
+- Spec governs requirements; design governs shape; Plan governs execution.
+- Plans MUST NOT contradict spec or design. If they would: note a revision suggestion and include the correction as `spec.md` / `design.md` in the Plan (applied at archive).
+- If the gap is fundamental, return to `ww-exploring` (general catch-all) or a more specific research skill (`ww-brainstorming` / `ww-analyzing`).
+- MUST NOT leave docs stale after archive.
 
 ### What a Plan contains
 
@@ -109,23 +118,32 @@ Only `plan.md` is mandatory. Create `spec.md` / `design.md` / `tasks.md` only wh
 
 ### Doc-change targets
 
-Declared in `plan.md`. For `spec.md` and `design.md`, state the canonical doc each merges into at archive and whether it is a new file or a section merge into an existing file. `ww-archiving` reads this declaration to drive the intelligent merge. `tasks.md` is execution-only (not merged). If a file is omitted, state why.
+Declared in `plan.md`:
 
-A Plan may carry doc changes only to `docs/specs/`, `docs/design/`, and `architecture.md` (global architecture changes via `design.md`). All other docs (`constitution.md`, `glossary.md`, `conventions.md`, `contracts/`, `experience/`, `adr/`) are maintained by `ww-writing-doc`, not by a Plan.
+- For `spec.md` and `design.md`: state the canonical doc each merges into at archive, and whether it is a new file or a section merge.
+- `tasks.md`: execution-only (not merged).
+- If a file is omitted, state why.
+- `ww-archiving` reads this declaration to drive the intelligent merge.
+
+A Plan may carry doc changes only to `docs/specs/`, `docs/design/`, and `architecture.md`. All other docs (`constitution.md`, `glossary.md`, `conventions.md`, `contracts/`, `experience/`, `adr/`) are maintained by `ww-writing-doc`.
 
 ### Spec vs design vs contracts
 
-A spec states *what the system must be* — the requirements level. Design states *how it's shaped* (internal). Contracts state the *outward-facing agreements*. Keep them separate:
+A spec states *what the system MUST be* — the requirements level. Design states *how it's shaped* (internal). Contracts state the *outward-facing agreements*. Keep them separate:
 
 - **Spec** — goals & scope, non-goals, success criteria, requirements, constraints (security / privacy / reliability / compatibility), scenarios / acceptance checks.
 - **Design (not spec)** — architecture & module boundaries, technology selection with rationale, internal API & data-model shape, database structure design (e.g. `db-schema`), configuration.
 - **Contracts (not design)** — outward-facing contracts that external consumers depend on: the complete API doc, external event payloads, external data-model schemas.
 
-The Plan carries `spec.md` and `design.md` only — it merges into `docs/specs/` / `docs/design/` / `architecture.md` (internal design, incl. `db-schema`). Outward-facing contracts (`docs/contracts/`) are maintained by `ww-writing-doc`, not carried by a Plan. Implementation detail (specific classes/functions, file layout, step-by-step) belongs in `tasks.md`, not in any of these.
+The Plan carries `spec.md` and `design.md` only:
+
+- Merges into `docs/specs/` / `docs/design/` / `architecture.md` (internal design, incl. `db-schema`).
+- Outward-facing contracts (`docs/contracts/`) are maintained by `ww-writing-doc`, not carried by a Plan.
+- Implementation detail (classes/functions, file layout, step-by-step) belongs in `tasks.md`, not in any of these.
 
 ### Test and verification rules
 
-- Every task must be verifiable: define a check that passes when the task is done.
+- Every task MUST be verifiable: define a check that passes when the task is done.
 - Prefer automated checks — tests, linters, type checks, build — over manual inspection. Reuse existing repo commands where available.
 - If no automated check exists, plan a task to write one, or state an explicit manual verification with the expected observable result.
 - Prefer test-first (TDD) for behavior-bearing tasks.
@@ -133,13 +151,17 @@ The Plan carries `spec.md` and `design.md` only — it merges into `docs/specs/`
 
 ### What stays in the canonical docs (not the Plan)
 
-- Requirements, goals, scope, non-goals, acceptance scenarios (spec); the system's shape, tech, internal API & data-model design incl. `db-schema` (design); outward-facing API/event/data-model contracts (contracts) — the target state. The Plan realizes them; outward-facing contracts are maintained by `ww-writing-doc`, not carried by a Plan.
+- The target state lives in canonical docs, not the Plan:
+  - **Spec** — requirements, goals, scope, non-goals, acceptance scenarios.
+  - **Design** — the system's shape, tech, internal API & data-model design incl. `db-schema`.
+  - **Contracts** — outward-facing API/event/data-model contracts.
+- The Plan realizes them; outward-facing contracts are maintained by `ww-writing-doc`.
 
 ## Storage path
 
-Place the Plan directory under `docs/plans/active/`, named `YYYY-MM-DD-<slug>/` (date prefix for ordering). On archive, `ww-archiving` moves it to `docs/plans/completed/` via `git mv`.
-
-Pick `<slug>` as a short kebab-case slug matching the spec topic where possible.
+- Place under `docs/plans/active/YYYY-MM-DD-<slug>/` (date prefix for ordering).
+- On archive, `ww-archiving` moves it to `docs/plans/completed/` via `git mv`.
+- Pick `<slug>` as a short kebab-case slug matching the spec topic where possible.
 
 ## Self-review checklist
 
@@ -157,9 +179,9 @@ Pick `<slug>` as a short kebab-case slug matching the spec topic where possible.
 
 ## Hard constraints
 
-- In this flow, create or modify ONLY files within the Plan directory. Touch no other file — no spec/design edits (note revision suggestions instead), no code, no index updates.
-- Only `plan.md` is mandatory; `spec.md` / `design.md` / `tasks.md` exist only when they have content, and are declared in `plan.md`.
-- A Plan may carry doc changes only to `docs/specs/`, `docs/design/`, and `architecture.md`. Other docs are `ww-writing-doc`'s responsibility.
-- Greenfield: if the Plan's scope covers an area with no existing spec/design, the Plan must carry both `spec.md` and `design.md` — code must not land for an undocumented area.
-- Never skip a gated step. User review is a HARD-GATE; the self-review, commit, and handoff skips each require an explicit user answer.
-- Never commit without explicit approval.
+- In this flow, MUST create or modify ONLY files within the Plan directory. MUST touch no other file — no spec/design edits (note revision suggestions instead), no code, no index updates.
+- Only `plan.md` is mandatory; `spec.md` / `design.md` / `tasks.md` MUST exist only when they have content, and MUST be declared in `plan.md`.
+- A Plan MUST carry doc changes only to `docs/specs/`, `docs/design/`, and `architecture.md`. Other docs are `ww-writing-doc`'s responsibility.
+- Greenfield: if the Plan's scope covers an area with no existing spec/design, the Plan MUST carry both `spec.md` and `design.md` — code MUST NOT land for an undocumented area.
+- MUST NOT skip a gated step. User review is a HARD-GATE; the self-review, commit, and handoff skips each require an explicit user answer.
+- MUST NOT commit without explicit approval.

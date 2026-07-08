@@ -9,13 +9,15 @@ Diagnose a defect or performance issue — reproduce, locate root cause, define 
 
 ## When to use me
 
-Use to diagnose: bug fixes (reproduce, root-cause, define fix area) and performance analysis/optimization (locate bottleneck, define optimization target). Invoke when the symptom is known but the cause isn't. Do NOT use to brainstorm a direction (use `ww-brainstorming`), converge a rough idea (use `ww-exploring`), write a Plan (use `ww-planning`), or write docs directly (use `ww-writing-doc`). Skip when the diagnosis is already clear.
+- **Use when** the symptom is known but the cause isn't — bug fixes (reproduce, root-cause, define fix area) or performance analysis/optimization (locate bottleneck, define optimization target).
+- **MUST NOT use** to: brainstorm a direction → `ww-brainstorming`; converge a rough idea → `ww-exploring`; write a Plan → `ww-planning`; write docs directly → `ww-writing-doc`.
+- **Skip when** the diagnosis is already clear.
 
 ## Workflow
 
 ```mermaid
 flowchart TD
-    A[1. Explore + reproduce] --> B[2. Restate symptom + determine work-type]
+    A[1. Explore + reproduce] --> B[2. Restate symptom + determine work-kind]
     B --> C{Root cause clear?}
     C -- No --> D[3. Investigate: isolate, hypothesize, verify]
     D --> C
@@ -38,11 +40,19 @@ Follow these steps in order.
 
 ### 1. Explore and reproduce
 
-Read `AGENTS.md` (foregrounds `docs/constitution.md` and points to `docs/README.md`) → `docs/README.md`, then the relevant docs (`constitution.md`, `architecture.md`, `conventions.md`, `glossary.md`, `specs/`, `design/`, `contracts/`, `adr/`, and `references/` as context) and code. Reproduce the symptom (or characterize the performance issue with measurements). Build a picture of the affected area.
+Read in order, reproduce the symptom, then build a picture of the affected area:
 
-### 2. Restate symptom and determine work-type
+1. `AGENTS.md` — foregrounds `docs/constitution.md`, points to `docs/README.md`.
+2. `docs/README.md` — the doc index.
+3. Relevant docs and code — `constitution.md`, `architecture.md`, `conventions.md`, `glossary.md`, `specs/`, `design/`, `contracts/`, `adr/`; `references/` as context.
+4. Reproduce the symptom (or characterize the performance issue with measurements).
 
-Restate the symptom to the user and determine the work type for routing: **development** (default — the fix will be implemented) or **documentation** (when the root cause reveals a spec/design gap that should be captured as an ADR, e.g. a performance budget). The research mode is analyzing; only the work-type is open.
+### 2. Restate symptom and determine work-kind
+
+Restate the symptom to the user. Determine the work kind for routing (research kind is fixed — analyzing; only the work-kind is open):
+
+- **development** (default) — the fix will be implemented.
+- **documentation** — root cause reveals a spec/design gap that SHOULD be captured as an ADR (e.g. a performance budget).
 
 ### 3. Investigate
 
@@ -52,7 +62,7 @@ Isolate variables, form hypotheses, verify against evidence. Use the `question` 
 
 Produce the diagnosis: root cause + fix area (the scope the fix will touch), plus intended doc changes if any (e.g. an ADR capturing the finding). Route:
 
-- **development** → `ww-planning` (usually no doc changes; carry them only if a decision must be recorded).
+- **development** → `ww-planning` (usually no doc changes; carry them only if a decision MUST be recorded).
 - **documentation** → `ww-writing-doc` (when the root cause is a spec/design gap warranting a doc decision).
 
 ### 5. Self-review
@@ -69,22 +79,26 @@ On approval, hand off to the routed skill (`ww-writing-doc` or `ww-planning`) vi
 
 ## Conclusion
 
-The conclusion is the deliverable of analyzing — it carries the diagnosis into the next skill. It lives in the conversation (no file); the next skill consumes it and persists what it needs.
+The conclusion carries the diagnosis into the next skill. It lives in the conversation (no file); the next skill consumes it and persists what it needs.
 
 ### No source of truth here
 
-Analyzing produces no artifact and touches no truth. The spec/design remain the source of truth; the Plan (once written) becomes the operative truth during development execution; docs remain truth for documentation.
+Analyzing produces no artifact and touches no truth:
+
+- Spec/design remain the source of truth.
+- Plan (once written) becomes the source of truth during development execution.
+- Docs remain truth for documentation.
 
 ## Self-review checklist
 
 - [ ] Symptom reproduced or performance issue characterized with evidence.
 - [ ] Root cause identified and verified (not a guess).
 - [ ] Fix area / scope defined.
-- [ ] Work type (documentation / development) correctly identified; doc changes carried only if a decision warrants recording.
+- [ ] Work kind (documentation / development) correctly identified; doc changes carried only if a decision warrants recording.
 - [ ] Open questions resolved or explicitly flagged.
 
 ## Hard constraints
 
-- Touch no file. Analyzing produces no artifact; the conclusion lives in the conversation.
-- Diagnosis is not the fix — do not start coding; the fix belongs to `ww-planning` / `ww-executing`.
-- Never skip the HARD-GATE. User review of the diagnosis and routing is mandatory.
+- MUST touch no file. Analyzing produces no artifact; the conclusion lives in the conversation.
+- Diagnosis is not the fix — MUST NOT start coding; the fix belongs to `ww-planning` / `ww-executing`.
+- MUST NOT skip the HARD-GATE. User review of the diagnosis and routing is mandatory.

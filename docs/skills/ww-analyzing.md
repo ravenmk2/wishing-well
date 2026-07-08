@@ -1,7 +1,7 @@
 # Skill: ww-analyzing
 
 - **Skill**: `ww-analyzing` (command `/ww-analyze`)
-- **Role**: Research front — diagnostic.
+- **Role**: Research phase — diagnostic.
 
 ## Purpose
 
@@ -31,7 +31,7 @@ Diagnose a defect or performance issue: reproduce, locate root cause, define the
 - **Diagnosis ≠ fix.** The fix belongs to `ww-planning` / `ww-executing`; analyzing MUST NOT start coding.
 - **Evidence-based root cause.** Verified against evidence, not a guess; symptom reproduced or performance issue characterized with measurements.
 - **Default routing is development.** The fix will be implemented; documentation routing is the exception (spec/design gap → ADR).
-- **Gate cadence.** Self-review default-on, skippable; user review is a HARD-GATE.
+- **Gating.** Self-review default-on, skippable; user review is a HARD-GATE.
 
 ## Boundaries
 
